@@ -133,6 +133,13 @@ class TestFrontend(unittest.TestCase):
         response = self.sendGetRequest(path)
         return response
 
+    def sendGetDataset(self, id_=None):
+        if id_ is None:
+            id_ = self.variantSetId
+        path = "/datasets/{}".format(id_)
+        response = self.sendGetRequest(path)
+        return response
+
     def sendGetReadGroup(self, id_=None):
         if id_ is None:
             id_ = self.readGroupId
@@ -290,6 +297,14 @@ class TestFrontend(unittest.TestCase):
             response.data)
         self.assertEqual(len(responseData.variantSets), 1)
 
+    def testGetDataset(self):
+        response = self.sendDatasetsSearch()
+        responseData = protocol.SearchDatasetsResponse.fromJsonString(
+            response.data)
+        datasetId = responseData.datasets[0].id
+        response = self.sendGetDataset(datasetId)
+        self.assertEqual(200, response.status_code)
+
     def testGetVariantSet(self):
         response = self.sendVariantSetsSearch()
         responseData = protocol.SearchVariantSetsResponse.fromJsonString(
@@ -358,7 +373,6 @@ class TestFrontend(unittest.TestCase):
         pathsNotImplementedPost = [
         ]
         pathsNotImplementedGet = [
-            '/datasets/<id>',
         ]
 
         def runRequest(method, path):

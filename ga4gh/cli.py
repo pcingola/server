@@ -955,8 +955,8 @@ def client_main(parser=None):
     addReadGroupsGetParser(subparsers)
     addCallsetsGetParser(subparsers)
     addVariantsGetParser(subparsers)
-    addReferencesBasesListParser(subparsers)
     addDatasetsGetParser(subparsers)
+    addReferencesBasesListParser(subparsers)
 
     args = parser.parse_args()
     if "runner" not in args:
