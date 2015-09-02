@@ -557,6 +557,17 @@ class GetCallsetRunner(AbstractGetRunner):
         self._run(self._httpClient.getCallset)
 
 
+class GetDatasetsRunner(AbstractGetRunner):
+    """
+    Runner class for the datasets/{id} method
+    """
+    def __init__(self, args):
+        super(GetDatasetsRunner, self).__init__(args)
+
+    def run(self):
+        self._run(self._httpClient.getDataset)
+
+
 class GetVariantRunner(AbstractGetRunner):
     """
     Runner class for the variants/{id} method
@@ -825,6 +836,15 @@ def addReadsSearchParser(subparsers):
     return parser
 
 
+def addDatasetsGetParser(subparsers):
+    parser = subparsers.add_parser(
+        "datasets-get",
+        description="Get a dataset",
+        help="Get a dataset")
+    parser.set_defaults(runner=GetDatasetsRunner)
+    addGetArguments(parser)
+
+
 def addDatasetsSearchParser(subparsers):
     parser = subparsers.add_parser(
         "datasets-search",
@@ -936,6 +956,7 @@ def client_main(parser=None):
     addCallsetsGetParser(subparsers)
     addVariantsGetParser(subparsers)
     addReferencesBasesListParser(subparsers)
+    addDatasetsGetParser(subparsers)
 
     args = parser.parse_args()
     if "runner" not in args:
