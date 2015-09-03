@@ -135,7 +135,7 @@ class TestFrontend(unittest.TestCase):
 
     def sendGetDataset(self, id_=None):
         if id_ is None:
-            id_ = self.variantSetId
+            id_ = self.datasetsId
         path = "/datasets/{}".format(id_)
         response = self.sendGetRequest(path)
         return response
@@ -369,23 +369,23 @@ class TestFrontend(unittest.TestCase):
         datasets = list(responseData.datasets)
         self.assertEqual(self.datasetId, datasets[0].id)
 
-    def testNotImplementedPaths(self):
-        pathsNotImplementedPost = [
-        ]
-        pathsNotImplementedGet = [
-        ]
-
-        def runRequest(method, path):
-            requestPath = path.replace('<id>', 'someId')
-            response = method(requestPath)
-            protocol.GAException.fromJsonString(response.get_data())
-            self.assertEqual(response.status_code, 501)
-
-        for path in pathsNotImplementedGet:
-            runRequest(self.app.get, path)
-        for path in pathsNotImplementedPost:
-            runRequest(self.app.post, path)
-
+    # def testNotImplementedPaths(self):
+    #     pathsNotImplementedPost = [
+    #     ]
+    #     pathsNotImplementedGet = [
+    #     ]
+    #
+    #     def runRequest(method, path):
+    #         requestPath = path.replace('<id>', 'someId')
+    #         response = method(requestPath)
+    #         protocol.GAException.fromJsonString(response.get_data())
+    #         self.assertEqual(response.status_code, 501)
+    #
+    #     for path in pathsNotImplementedGet:
+    #         runRequest(self.app.get, path)
+    #     for path in pathsNotImplementedPost:
+    #         runRequest(self.app.post, path)
+    
     def testNoAuthentication(self):
         path = '/oauth2callback'
         self.assertEqual(501, self.app.get(path).status_code)
