@@ -204,24 +204,23 @@ class TestFrontend(unittest.TestCase):
 
     def testCors(self):
         def assertHeaders(response):
-            print("Response:", response)
             self.assertEqual(self.exampleUrl,
                              response.headers['Access-Control-Allow-Origin'])
             self.assertTrue('Content-Type' in response.headers)
-        # # Post-based search methods
-        # assertHeaders(self.sendVariantsSearch())
-        # assertHeaders(self.sendVariantSetsSearch())
-        # assertHeaders(self.sendReadsSearch())
-        # assertHeaders(self.sendReferencesSearch())
-        # assertHeaders(self.sendReferenceBasesList())
-        # assertHeaders(self.sendDatasetsSearch())
-        # # Get-based accessor methods
-        # assertHeaders(self.sendGetVariantSet())
-        # assertHeaders(self.sendGetReference())
-        # assertHeaders(self.sendGetReferenceSet())
-        # assertHeaders(self.sendGetReadGroupSet())
-        # assertHeaders(self.sendGetReadGroup())
-        # assertHeaders(self.sendGetVariant())
+        # Post-based search methods
+        assertHeaders(self.sendVariantsSearch())
+        assertHeaders(self.sendVariantSetsSearch())
+        assertHeaders(self.sendReadsSearch())
+        assertHeaders(self.sendReferencesSearch())
+        assertHeaders(self.sendReferenceBasesList())
+        assertHeaders(self.sendDatasetsSearch())
+        # Get-based accessor methods
+        assertHeaders(self.sendGetVariantSet())
+        assertHeaders(self.sendGetReference())
+        assertHeaders(self.sendGetReferenceSet())
+        assertHeaders(self.sendGetReadGroupSet())
+        assertHeaders(self.sendGetReadGroup())
+        assertHeaders(self.sendGetVariant())
         assertHeaders(self.sendGetDataset())
         # TODO: Test other methods as they are implemented
 
