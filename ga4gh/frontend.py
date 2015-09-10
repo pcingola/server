@@ -602,8 +602,6 @@ def getDataset(id):
     return handleFlaskGetRequest(
         id, flask.request, app.backend.runGetDataset)
 
-# The below paths have not yet been implemented
-
 # The below methods ensure that JSON is returned for various errors
 # instead of the default, html
 
