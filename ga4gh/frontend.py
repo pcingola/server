@@ -601,11 +601,6 @@ def oidcCallback():
 def getDataset(id):
     return handleFlaskGetRequest(
         id, flask.request, app.backend.runGetDataset)
-<<<<<<< HEAD
-=======
-
-# The below paths have not yet been implemented
->>>>>>> c7aead7ccee29f068c80866c1032e216b901ba0c
 
 # The below methods ensure that JSON is returned for various errors
 # instead of the default, html
